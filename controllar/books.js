@@ -27,7 +27,7 @@ exports.getbookbyid = async (req, res) => {
 
 exports.createbooklist = async (req, res) => {
     try {
-     const { Title, Author} = req.body; 
+     const {Title, Author} = req.body; 
 
      if(!Title.trim()){
         return res.json({ msg: "Please input the valid data"})
@@ -48,7 +48,7 @@ exports.createbooklist = async (req, res) => {
     const book = await new books({
         Title,
         Author
-    }).save();
+    }); console.log(book);
         
 
     //Send Response 

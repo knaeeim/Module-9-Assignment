@@ -1,4 +1,3 @@
-const { readdirSync } = require("fs");
 const path = require("path");
 const express = require('express');
 const app = express();
@@ -7,6 +6,7 @@ require("dotenv").config();
 const helmet = require("helmet")
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const router = require('./routes/books');
 
 
 
@@ -20,8 +20,7 @@ app.use(helmet());
 
 // routes and middlewares
 
-readdirSync("./routes").map(r => app.use("api/v1", require(`./routes/${r}`)))
-
+app.use("/api/v1/", router);
 
 //Server
 
