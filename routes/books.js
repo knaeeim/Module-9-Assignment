@@ -11,9 +11,9 @@ router.post("/createbooklist", createbooklist);
 
 router.get("/getbookbyid/:id", getbookbyid);
 
-router.put("/updatebook",updatebook );
+router.put("/updatebook/:id",updatebook );
 
-router.delete("/deletebook", deletebook);
+router.delete("/deletebook/:id", deletebook);
 
 
 

@@ -13,11 +13,11 @@ exports.getallbooks = async (req, res) => {
 
 exports.getbookbyid = async (req, res) => {
   try {
-    const book = await books.findbyid(req.params.id);
+    const book = await books.findById(req.params.id);
     if(!book){
         res.status(404).json({ error: "Requested book not found"});
     }else{
-        res.json(books);
+        res.json(book);
     }
   } catch (error) {
     res.status(500).json({ error: "Internal Server Error"});
@@ -38,8 +38,8 @@ exports.createbooklist = async (req, res) => {
 
      //check if book name is already there
 
-    const exitingbookTitle = await books.findOne({Title}); 
-    if(exitableBookTitle) {
+    const existingbookTitle = await books.findOne({Title}); 
+    if(existingbookTitle) {
         return res.json({ Error: "Book already exists"})
     }
 
@@ -48,7 +48,7 @@ exports.createbooklist = async (req, res) => {
     const book = await new books({
         Title,
         Author
-    }); console.log(book);
+    }).save();
         
 
     //Send Response 
@@ -73,7 +73,7 @@ exports.updatebook = async (req, res) => {
         if(!book){
             return res.status(404).json({ error: 'Book not found' });
         }else{
-            res.json({ book})
+            res.json({book})
         }
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error"});
@@ -87,7 +87,7 @@ exports.deletebook = async (req, res) => {
         if(!book){
             return res.status(404).json({ error: "Book not found"});
         }else{
-            res.status(204).json({ book});
+            res.status(204).json({book});
         }
     } catch (error) {
         res.status(500).json({ error: "Internal Server Error"});

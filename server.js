@@ -10,6 +10,7 @@ const router = require('./routes/books');
 
 
 
+
 // middlewares 
 app.use(cors()); 
 app.use(morgan("dev"));
@@ -21,6 +22,7 @@ app.use(helmet());
 // routes and middlewares
 
 app.use("/api/v1/", router);
+
 
 //Server
 
